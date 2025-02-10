@@ -1,3 +1,17 @@
+def plot_acf_pacf(timeseries):
+    fig = plt.figure(figsize=(12, 18))
+    for index, (timeserie_title, timeserie) in enumerate(timeseries.items()):
+        index = index * 2
+        ax = fig.add_subplot(len(timeseries), 2, index + 1)
+        ax.title.set_text(timeserie_title)
+        graphics.plot_acf(timeserie, ax=ax, lags=40)
+        ax.title.set_text('ACF %s' % timeserie_title)
+
+        ax = fig.add_subplot(len(timeseries), 2, index + 2)
+        graphics.plot_pacf(timeserie, ax=ax, lags=40)
+        ax.title.set_text('PACF %s' % timeserie_title)
+        
+
 log_catfish_sales = numpy.log(catfish_sales)
 
 # création d'un graphique avec la série originale
